@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Berpikir Komputasional</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 500px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .chat-box {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        .user, .bot {
+            margin-bottom: 12px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .user {
+            background-color: #d1e7dd;
+            text-align: right;
+        }
+        .bot {
+            background-color: #e2e3e5;
+            text-align: left;
+        }
+        .input-container {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">Ayo Diskusi Bersama Asisten Guru</div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-container">
+            <input type="text" id="question" placeholder="Ajukan pertanyaan...">
+            <button onclick="chat()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            "apa itu berpikir komputasional": "Berpikir komputasional adalah pendekatan dalam menyelesaikan masalah dengan cara memecah, mengenali pola, menyederhanakan, dan menyusun algoritma.",
+            "mengapa berpikir komputasional penting dalam pendidikan": "Berpikir komputasional melatih siswa untuk berpikir logis, sistematis, dan mampu memecahkan masalah kompleks.",
+            "apa saja komponen utama dalam berpikir komputasional": "Komponen utama: Dekomposisi, Pengenalan Pola, Abstraksi, dan Algoritma.",
+            "apa itu dekomposisi": "Dekomposisi adalah memecah masalah besar menjadi bagian kecil yang lebih mudah dikelola.",
+            "apa itu pengenalan pola": "Pengenalan pola adalah identifikasi kemiripan dalam data atau masalah untuk mempermudah solusi.",
+            "apa itu abstraksi": "Abstraksi adalah menyederhanakan masalah dengan mengabaikan detail yang tidak relevan.",
+            "apa itu algoritma": "Algoritma adalah serangkaian langkah sistematis untuk menyelesaikan masalah.",
+            "contoh dekomposisi dalam kehidupan sehari-hari": "Misal, membuat kue: mempersiapkan bahan, mencampur adonan, memanggang, dan menghias.",
+            "contoh algoritma dalam kehidupan sehari-hari": "Resep memasak, langkah-langkah menghidupkan komputer, atau panduan mencuci pakaian."
+        };
+
+        function chat() {
+            const question = document.getElementById('question').value.toLowerCase();
+            const chatBox = document.getElementById('chat-box');
+
+            if (question) {
+                chatBox.innerHTML += `<div class='user'>${question}</div>`;
+                setTimeout(() => {
+                    const response = responses[question] || "Maaf, saya belum memiliki jawaban untuk itu. Silakan ajukan pertanyaan lainnya.";
+                    chatBox.innerHTML += `<div class='bot'>${response}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 500);
+
+                document.getElementById('question').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
